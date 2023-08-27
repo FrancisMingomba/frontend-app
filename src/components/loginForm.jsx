@@ -1,36 +1,34 @@
 import React  from 'react';
 import Joi from 'joi-browser';
 import Form from './form';
+import { login } from '../services/authService';
 
 
 class RegisterForm extends Form{
     state = { 
-        data: {username: "", password: "", name: ""},
+        data: {username: "", password: ""},
         errors: {}
      };
 
      schema = {
         username: Joi.string().required().email().label("Username"),
-        password: Joi.string().required().min(5).label("Password"),
-        name: Joi.string().label("Name")
+        password: Joi.string().required().min(5).label("Password")
+       
      };
 
-     doSubmit = () =>{
-
-        //call the server
-        console.log("Submitted");
-
-     }
+     doSubmit = async () =>{
+        const { data } = this.state;
+        await login(data.username, data.password);
+     };
 
     render() { 
         return (
             <div>
-                <h1>Register</h1>
+                <h1>Login</h1>
                 <form onSubmit={this.handleSubmit}>
                     {this.renderInput("username", "Username")}
                     {this.renderInput("password", "Password","password")}
-                    {this.renderInput("name", "Name")}
-                    {this.renderButton("Register")}
+                    {this.renderButton("Login")}
                 </form>
             </div>
         );
