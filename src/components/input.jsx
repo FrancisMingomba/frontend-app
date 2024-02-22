@@ -8,10 +8,8 @@ const Input = ({ name, label, error, ...rest}) => {
         <label htmlFor={name}>{label}</label>
         <input {...rest} name={name} autoFocus id={name}className="form-control"/>
         {error && <div className="alert alert-danger">{error}</div>}
-        </div>
-        
-     );
-    
+        </div>        
+     );    
 };
  
 export default Input;
