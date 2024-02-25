@@ -19,6 +19,7 @@ class RegisterForm extends Form{
 
      doSubmit =  async () =>{
      await userService.register(this.state.data);
+     // redirection code. probably capture the return value from above and check if it was successful.
      }
 
     render() { 
@@ -26,9 +27,9 @@ class RegisterForm extends Form{
             <div>
                 <h1>Register</h1>
                 <form onSubmit={this.handleSubmit}>
+                    {this.renderInput("name", "Name")}
                     {this.renderInput("username", "Username")}
                     {this.renderInput("password", "Password","password")}
-                    {this.renderInput("name", "Name")}
                     {this.renderButton("Register")}
                 </form>
             </div>
