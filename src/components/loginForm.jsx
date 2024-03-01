@@ -17,15 +17,23 @@ class RegisterForm extends Form{
      };
 
      doSubmit = async () =>{
-        const { data } = this.state;
-        await login(data.username, data.password);
+        try {
+            const { data } = this.state;
+            await login(data.username, data.password);
+        } catch (ex) {
+            if (ex.response && ex.response.status === 400) {
+                const errors = {...this.state.errors};
+                errors.username = ex.response.data;
+                this.setState({ errors });
+            }         
+        }       
      };
 
     render() { 
         return (
-            <div>
+            <div className="auto-form-container">
                 <h1>Login</h1>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} type="button">
                     {this.renderInput("username", "Username")}
                     {this.renderInput("password", "Password","password")}
                     {this.renderButton("Login")}

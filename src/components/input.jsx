@@ -1,5 +1,6 @@
 import React from 'react';
-
+//import "../input.css";
+import "../css/input.css";
 
 
 const Input = ({ name, label, error, ...rest}) => {

@@ -50,10 +50,10 @@ handleChange = ({ currentTarget: input}) => {
 };
 renderButton(label) {
     return(
-    <button
+    <button 
      disabled={this.validate()} className="btn btn-primary">
      {label}
-     </button>
+    </button>
     );
 }
 
